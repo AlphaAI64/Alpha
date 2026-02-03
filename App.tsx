@@ -21,11 +21,18 @@ const App: React.FC = () => {
     }
   };
 
+  /**
+   * Optimizes the Calendly popup by checking for availability immediately.
+   * If the widget script hasn't loaded or is delayed, it instantly opens 
+   * in a new tab to avoid 'dead clicks'.
+   */
   const triggerAudit = () => {
-    if ((window as any).Calendly) {
-      (window as any).Calendly.initPopupWidget({ url: CALENDLY_URL });
+    const calendly = (window as any).Calendly;
+    if (calendly && typeof calendly.initPopupWidget === 'function') {
+      calendly.initPopupWidget({ url: CALENDLY_URL });
     } else {
-      window.open(CALENDLY_URL, '_blank');
+      // Direct fallback for instant feedback if the external widget is slow
+      window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
     }
   };
 
@@ -57,8 +64,9 @@ const App: React.FC = () => {
         <section className="relative pt-48 pb-32 px-6 overflow-hidden">
           <div className="bg-subtle-mesh" aria-hidden="true"></div>
           <div className="max-w-6xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-50 text-slate-500 text-[11px] font-black uppercase tracking-[0.2em] mb-10 border border-slate-100">
-              <span className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse" aria-hidden="true"></span>
+            {/* Enhanced Sharp Badge - Fixed blurry text */}
+            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white text-slate-900 text-[12px] font-bold uppercase tracking-[0.15em] mb-10 border border-slate-200 shadow-sm">
+              <span className="w-2 h-2 bg-blue-600 rounded-full shadow-[0_0_8px_rgba(37,99,235,0.4)] animate-pulse" aria-hidden="true"></span>
               It’s time to move from AI curious to AI-native.
             </div>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black mb-10 leading-[0.85] text-slate-900 tracking-tighter">
@@ -69,7 +77,7 @@ const App: React.FC = () => {
               We build the <span className="text-slate-900 font-bold underline decoration-blue-500/30 underline-offset-8">AI operating systems</span> for your next decade of growth. No hype, just engineering that works.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
-              <Button size="lg" onClick={triggerAudit} className="rounded-full px-12 h-20 text-xl shadow-2xl">Start Your AI Audit</Button>
+              <Button size="lg" onClick={triggerAudit} className="rounded-full px-12 h-20 text-xl shadow-2xl active:scale-95 transition-transform">Start Your AI Audit</Button>
             </div>
           </div>
         </section>
@@ -116,7 +124,7 @@ const App: React.FC = () => {
                 <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tighter leading-none">Scale smart. <br /><span className="text-blue-600">Cut costs.</span></h2>
                 <p className="text-xl text-slate-500 font-medium">We identify the waste and build the systems to eliminate it.</p>
               </div>
-              <Button variant="outline" size="lg" onClick={triggerAudit} className="rounded-full border-slate-200">View Roadmap</Button>
+              <Button variant="outline" size="lg" onClick={triggerAudit} className="rounded-full border-slate-200 active:scale-95 transition-transform">View Roadmap</Button>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -160,7 +168,7 @@ const App: React.FC = () => {
             <p className="text-slate-500 text-xl md:text-3xl mb-16 font-medium max-w-2xl mx-auto leading-relaxed">
               Scale smart and cut costs with an AI audit. The future has arrived—be among those who own it.
             </p>
-            <Button size="lg" onClick={triggerAudit} className="rounded-full h-24 px-16 text-2xl shadow-blue-500/20">Book Your AI Audit</Button>
+            <Button size="lg" onClick={triggerAudit} className="rounded-full h-24 px-16 text-2xl shadow-blue-500/20 active:scale-95 transition-transform">Book Your AI Audit</Button>
           </div>
         </section>
       </main>
@@ -176,7 +184,7 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex flex-col items-center md:items-end gap-4">
-            <Button onClick={triggerAudit} variant="outline" size="sm" className="rounded-full text-[10px]">Launch Audit</Button>
+            <Button onClick={triggerAudit} variant="outline" size="sm" className="rounded-full text-[10px] active:scale-95 transition-transform">Launch Audit</Button>
             <p className="text-slate-300 text-[9px] font-black uppercase tracking-[0.6em]">© 2025 ALPHA AI. NO BULLSHIT ENGINEERING.</p>
           </div>
         </div>

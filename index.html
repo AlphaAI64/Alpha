@@ -12,6 +12,16 @@
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
 
+    <!-- Speed Optimizations -->
+    <link rel="preconnect" href="https://assets.calendly.com">
+    <link rel="dns-prefetch" href="https://assets.calendly.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preload" href="https://assets.calendly.com/assets/external/widget.css" as="style">
+    <link rel="preload" href="https://assets.calendly.com/assets/external/widget.js" as="script">
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alpha-ai.com/">
@@ -63,8 +73,6 @@
     </script>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <!-- Calendly core assets -->
@@ -136,7 +144,6 @@
 </head>
 <body>
     <div id="root"></div>
-    <!-- CRITICAL: Entry point script tag -->
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>
