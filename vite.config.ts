@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Set base to the repository name for GitHub Pages sub-path hosting
+  // This matches the repository name 'Alpha' as seen in the URL alphaai64.github.io/Alpha/
   base: '/Alpha/',
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
@@ -13,8 +13,12 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: './index.html'
+        main: 'index.html'
       }
     }
+  },
+  server: {
+    port: 3000,
+    open: true
   }
 });
