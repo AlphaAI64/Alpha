@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   // Fixed: Matches your repository name for GitHub Pages deployment
-  base: '/Alpha/',
+  base: '/',
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
   },
