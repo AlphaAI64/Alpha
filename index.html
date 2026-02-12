@@ -5,80 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Primary Meta Tags -->
-    <title>Alpha AI | AI Strategy & Engineering for Enterprises</title>
-    <meta name="title" content="Alpha AI | AI Strategy & Engineering for Enterprises">
+    <title>Alpha AI | AI Strategy & Engineering</title>
+    <meta name="title" content="Alpha AI | AI Strategy & Engineering">
     <meta name="description" content="Alpha AI helps forward-thinking businesses build the AI operating systems for the next decade of growth. Scale smart, cut costs, and move from AI-curious to AI-native.">
     <meta name="keywords" content="AI Consulting, Artificial Intelligence Strategy, Enterprise AI, AI Automation, AI Operating Systems, Business Scaling, AI Engineering">
     <meta name="robots" content="index, follow">
     <meta name="language" content="English">
 
     <!-- Speed Optimizations -->
-    <link rel="preconnect" href="https://assets.calendly.com">
-    <link rel="dns-prefetch" href="https://assets.calendly.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload Critical Assets -->
-    <link rel="preload" href="https://assets.calendly.com/assets/external/widget.css" as="style">
-    <link rel="preload" href="https://assets.calendly.com/assets/external/widget.js" as="script">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://alpha-ai.com/">
-    <meta property="og:title" content="Alpha AI | Scale Smart. Cut Costs.">
-    <meta property="og:description" content="We build the AI operating systems for your next decade of growth. No hype, just engineering that works.">
-    <meta property="og:image" content="https://alpha-ai.com/og-image.png">
-
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://alpha-ai.com/">
-    <meta property="twitter:title" content="Alpha AI | Scale Smart. Cut Costs.">
-    <meta property="twitter:description" content="We build the AI operating systems for your next decade of growth. No hype, just engineering that works.">
-    <meta property="twitter:image" content="https://alpha-ai.com/og-image.png">
-
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Alpha AI",
-      "image": "https://alpha-ai.com/logo.png",
-      "@id": "",
-      "url": "https://alpha-ai.com",
-      "telephone": "",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "",
-        "addressLocality": "",
-        "postalCode": "",
-        "addressCountry": "US"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday"
-        ],
-        "opens": "09:00",
-        "closes": "18:00"
-      },
-      "sameAs": [
-        "https://linkedin.com/company/alpha-ai"
-      ],
-      "description": "Premium AI strategy and implementation for modern enterprises. We build the tech that works."
-    }
-    </script>
-
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- Calendly core assets -->
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-
     <style>
         :root {
             --bg-bright: #ffffff;
@@ -98,11 +38,6 @@
             font-family: 'Inter', sans-serif;
             letter-spacing: -0.04em;
         }
-        .text-gradient {
-            background: linear-gradient(135deg, #0f172a 0%, #334155 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
         .glass-card {
             background: #ffffff;
             border: 1px solid var(--border-soft);
@@ -121,13 +56,6 @@
                               radial-gradient(circle at 0% 100%, rgba(37, 99, 235, 0.02) 0%, transparent 40%);
             z-index: -1;
         }
-        .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-        }
-        .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
         
         /* Fast-loading progress bar simulation */
         #loading-bar {
@@ -144,12 +72,12 @@
 <script type="importmap">
 {
   "imports": {
-    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.3",
-    "@google/genai": "https://esm.sh/@google/genai@^1.40.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
     "vite": "https://esm.sh/vite@^7.3.1",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "react": "https://esm.sh/react@^19.2.4",
     "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4"
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
   }
 }
 </script>
@@ -157,6 +85,6 @@
 <body>
     <div id="loading-bar"></div>
     <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
+    <script type="module" src="index.tsx"></script>
 </body>
 </html>

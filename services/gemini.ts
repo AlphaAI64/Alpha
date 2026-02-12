@@ -1,19 +1,13 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
 
-const API_KEY = process.env.API_KEY || "";
-
 /**
  * Generates a streaming AI response using the gemini-3-pro-preview model.
  * Context updated to reflect Alpha AI's specific philosophy and "no-bullshit" tone.
  */
 export async function* generateAIStream(prompt: string, history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
-  if (!API_KEY) {
-    yield "Error: API Key is not configured.";
-    return;
-  }
-
   try {
-    const ai = new GoogleGenAI({ apiKey: API_KEY });
+    // Correctly initialize GoogleGenAI using process.env.API_KEY as a named parameter inside the function.
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
     
     const stream = await ai.models.generateContentStream({
       model: 'gemini-3-pro-preview',
@@ -51,6 +45,7 @@ export async function* generateAIStream(prompt: string, history: { role: 'user' 
 
     for await (const chunk of stream) {
       const responseChunk = chunk as GenerateContentResponse;
+      // Access the .text property directly as it is a getter, not a method.
       const text = responseChunk.text;
       if (text) {
         yield text;

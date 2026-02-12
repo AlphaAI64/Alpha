@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SERVICES, PROCESS_STEPS } from './constants';
 import Button from './components/ui/Button';
-import ChatWidget from './components/ChatWidget';
 
 const CALENDLY_URL = 'https://calendly.com/alphamarketingai/30min';
 
@@ -25,8 +24,7 @@ const App: React.FC = () => {
 
   /**
    * High-Performance Audit Trigger.
-   * "Faster than iframe": Uses a direct redirect strategy with visual feedback.
-   * If the user clicks, we immediately signal progress and redirect to the target URL.
+   * Directly opens the booking link for maximum speed.
    */
   const triggerAudit = () => {
     setIsAuditLoading(true);
@@ -39,23 +37,11 @@ const App: React.FC = () => {
       setTimeout(() => { if (bar) bar.style.width = '0%'; }, 600);
     }
 
-    const calendly = (window as any).Calendly;
-    
-    // Safety racing: if popup takes too long, just open in new tab
-    const forceOpenTimeout = setTimeout(() => {
+    // Direct redirect is the fastest interaction path
+    setTimeout(() => {
       window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
       setIsAuditLoading(false);
-    }, 200);
-
-    if (calendly && typeof calendly.initPopupWidget === 'function') {
-      try {
-        calendly.initPopupWidget({ url: CALENDLY_URL });
-        clearTimeout(forceOpenTimeout);
-        setTimeout(() => setIsAuditLoading(false), 800);
-      } catch (err) {
-        console.error("Calendly script fail", err);
-      }
-    }
+    }, 150);
   };
 
   return (
@@ -194,7 +180,6 @@ const App: React.FC = () => {
       {/* Footer */}
       <footer className="py-24 px-6 border-t border-slate-100 bg-white">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-12">
-          {/* Logo at bottom updated to look exactly like the top */}
           <div className="flex items-center gap-2 cursor-pointer group" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center transition-transform group-hover:scale-110">
               <span className="text-white font-black text-lg" aria-hidden="true">α</span>
@@ -208,8 +193,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
-
-      <ChatWidget />
     </div>
   );
 };
