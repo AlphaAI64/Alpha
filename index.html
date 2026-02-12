@@ -58,7 +58,6 @@
             z-index: -1;
         }
         
-        /* Fast-loading progress bar simulation */
         #loading-bar {
             position: fixed;
             top: 0;
@@ -87,9 +86,9 @@
     <div id="loading-bar"></div>
     <div id="root"></div>
     <!-- 
-      The importmap was removed because it conflicts with Vite's module resolution.
-      The script path is now explicitly relative to ensure GitHub Pages resolves it within the /Alpha/ folder.
+      Removed the importmap as it was causing resolution conflicts.
+      Vite uses the script tag below as an entry point to bundle your app.
     -->
-    <script type="module" src="./index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
