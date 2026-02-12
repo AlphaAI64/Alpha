@@ -6,8 +6,8 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
  */
 export async function* generateAIStream(prompt: string, history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
   try {
-    // Correctly initialize GoogleGenAI using process.env.API_KEY as a named parameter inside the function.
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
+    // Fix: Correctly initialize GoogleGenAI using process.env.API_KEY directly as a named parameter.
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
     
     const stream = await ai.models.generateContentStream({
       model: 'gemini-3-pro-preview',
@@ -45,7 +45,7 @@ export async function* generateAIStream(prompt: string, history: { role: 'user' 
 
     for await (const chunk of stream) {
       const responseChunk = chunk as GenerateContentResponse;
-      // Access the .text property directly as it is a getter, not a method.
+      // Fix: Access the .text property directly as it is a getter, not a method.
       const text = responseChunk.text;
       if (text) {
         yield text;

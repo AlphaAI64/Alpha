@@ -13,7 +13,9 @@ export interface CaseStudy {
   image: string;
 }
 
-// Added ChatMessage interface to fix the import error in ChatWidget.tsx
+/**
+ * Fix: Added ChatMessage interface to resolve the import error in ChatWidget.tsx
+ */
 export interface ChatMessage {
   role: 'user' | 'model';
   text: string;
