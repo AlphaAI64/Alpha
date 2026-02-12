@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SERVICES, PROCESS_STEPS } from './constants';
 import Button from './components/ui/Button';
-import ChatWidget from './components/ChatWidget';
 
 const CALENDLY_URL = 'https://calendly.com/alphamarketingai/30min';
 
@@ -25,7 +24,7 @@ const App: React.FC = () => {
 
   /**
    * High-Performance Audit Trigger.
-   * Directly opens the booking link for maximum speed.
+   * Redirects the user directly to the booking page in the same window.
    */
   const triggerAudit = () => {
     setIsAuditLoading(true);
@@ -38,9 +37,9 @@ const App: React.FC = () => {
       setTimeout(() => { if (bar) bar.style.width = '0%'; }, 600);
     }
 
-    // Direct redirect is the fastest interaction path
+    // Direct redirect is the fastest interaction path and avoids popup blockers
     setTimeout(() => {
-      window.open(CALENDLY_URL, '_blank', 'noopener,noreferrer');
+      window.location.href = CALENDLY_URL;
       setIsAuditLoading(false);
     }, 150);
   };
@@ -194,9 +193,6 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
-
-      {/* AI Assistant */}
-      <ChatWidget />
     </div>
   );
 };

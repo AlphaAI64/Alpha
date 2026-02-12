@@ -86,10 +86,9 @@
     <div id="loading-bar"></div>
     <div id="root"></div>
     <!-- 
-      The importmap was removed because it conflicts with Vite's bundling logic.
-      The leading slash in "/index.tsx" was removed so the browser looks for the file 
-      inside the current folder (/Alpha/) rather than at the root domain.
+      Removed the importmap as it conflicts with Vite's bundling logic.
+      The script source uses /index.tsx to be resolved correctly by the Vite dev server and build tool.
     -->
-    <script type="module" src="index.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>
