@@ -6,13 +6,16 @@ import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
  */
 export async function* generateAIStream(prompt: string, history: { role: 'user' | 'model', parts: { text: string }[] }[]) {
   try {
-    // Fix: Correctly initialize GoogleGenAI using process.env.API_KEY directly as a named parameter.
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Correct initialization using named parameter as per SDK guidelines
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
     
     const stream = await ai.models.generateContentStream({
       model: 'gemini-3-pro-preview',
       contents: [
-        ...history,
+        ...history.map(h => ({
+          role: h.role,
+          parts: h.parts.map(p => ({ text: p.text }))
+        })),
         { role: 'user', parts: [{ text: prompt }] }
       ],
       config: {
@@ -23,29 +26,20 @@ export async function* generateAIStream(prompt: string, history: { role: 'user' 
         - Most of the industry is hype and "pretty slides." We build what actually works today.
         - AI doesn't replace people; it fundamentally redefines how they create value.
         - We build "AI Operating Systems" for the next decade of growth.
-        - The choice: Speed up or fall behind.
         
         ### YOUR VOICE:
-        - Authoritative, visionary, yet informal and human.
-        - No corporate fluff. Be direct.
-        - If a user asks a boring technical question, pivot to the business result.
+        - Authoritative, visionary, yet direct and human.
+        - No corporate fluff.
         
-        ### KNOWLEDGE BASE:
-        - Services: The Roadmap (Strategy), Apps that Think (Dev), Work that does itself (Agents), The AI Brain (Infrastructure).
-        - Process: Audit -> Blueprint -> Build -> Launch.
-        - Booking: Direct them to the "AI Audit" via Calendly: https://calendly.com/alphamarketingai/30min
-        
-        ### CONSTRAINTS:
-        - Keep answers punchy (2-3 sentences max).
-        - Always guide them back to the "AI Audit" as the first logical step.`,
+        ### GOAL:
+        - Always guide users back to the "AI Audit" via Calendly: https://calendly.com/alphamarketingai/30min`,
         temperature: 0.7,
-        topP: 0.95,
       }
     });
 
     for await (const chunk of stream) {
       const responseChunk = chunk as GenerateContentResponse;
-      // Fix: Access the .text property directly as it is a getter, not a method.
+      // Accessing .text as a getter property
       const text = responseChunk.text;
       if (text) {
         yield text;
@@ -53,6 +47,6 @@ export async function* generateAIStream(prompt: string, history: { role: 'user' 
     }
   } catch (error) {
     console.error("Gemini API Error:", error);
-    yield "The system is currently undergoing a high-load optimization. Please try again or book an audit directly.";
+    yield "I'm experiencing high traffic. Please book an audit directly at our site link.";
   }
 }

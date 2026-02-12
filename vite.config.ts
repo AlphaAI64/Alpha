@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/',
+  // Using relative base to ensure asset resolution works across different hosting configurations
+  base: './',
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
   },
