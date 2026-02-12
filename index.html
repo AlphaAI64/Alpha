@@ -16,9 +16,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Using HTTPS for all assets to prevent Mixed Content errors -->
+    <!-- Calendly Widget CSS -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    
+    <!-- Using HTTPS for all assets -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Calendly Widget JS -->
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
     
     <style>
         :root {
@@ -85,10 +91,6 @@
 <body>
     <div id="loading-bar"></div>
     <div id="root"></div>
-    <!-- 
-      Removed the importmap as it conflicts with Vite's bundling logic.
-      The script source uses /index.tsx to be resolved correctly by the Vite dev server and build tool.
-    -->
     <script type="module" src="/index.tsx"></script>
 </body>
 </html>

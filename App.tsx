@@ -2,11 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { SERVICES, PROCESS_STEPS } from './constants';
 import Button from './components/ui/Button';
 
+// Extend window object to include Calendly
+declare global {
+  interface Window {
+    Calendly: any;
+  }
+}
+
 const CALENDLY_URL = 'https://calendly.com/alphamarketingai/30min';
 
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [isAuditLoading, setIsAuditLoading] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -24,24 +30,22 @@ const App: React.FC = () => {
 
   /**
    * High-Performance Audit Trigger.
-   * Redirects the user directly to the booking page in the same window.
+   * Uses Calendly's official popup widget to open over the site.
    */
   const triggerAudit = () => {
-    setIsAuditLoading(true);
-    
-    // Simulate top loading bar for immediate speed perception
+    // Show a quick visual cue on the loading bar for "speed"
     const bar = document.getElementById('loading-bar');
     if (bar) {
-      bar.style.width = '70%';
-      setTimeout(() => { if (bar) bar.style.width = '100%'; }, 200);
-      setTimeout(() => { if (bar) bar.style.width = '0%'; }, 600);
+      bar.style.width = '100%';
+      setTimeout(() => { if (bar) bar.style.width = '0%'; }, 500);
     }
 
-    // Direct redirect is the fastest interaction path and avoids popup blockers
-    setTimeout(() => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({ url: CALENDLY_URL });
+    } else {
+      // Fallback to direct redirect if script failed to load
       window.location.href = CALENDLY_URL;
-      setIsAuditLoading(false);
-    }, 150);
+    }
   };
 
   return (
