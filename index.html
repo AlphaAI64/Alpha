@@ -16,6 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- Using HTTPS for all assets to prevent Mixed Content errors -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
@@ -85,7 +86,10 @@
 <body>
     <div id="loading-bar"></div>
     <div id="root"></div>
-    <!-- Removed leading slash to ensure Vite treats it as a relative project file -->
-    <script type="module" src="index.tsx"></script>
+    <!-- 
+      The importmap was removed because it conflicts with Vite's module resolution.
+      The script path is now explicitly relative to ensure GitHub Pages resolves it within the /Alpha/ folder.
+    -->
+    <script type="module" src="./index.tsx"></script>
 </body>
 </html>

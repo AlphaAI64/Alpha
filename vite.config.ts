@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Matches the GitHub Pages repository sub-path
+  // This matches the repository name exactly for GitHub Pages
   base: '/Alpha/',
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
