@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SERVICES, PROCESS_STEPS } from './constants';
 import Button from './components/ui/Button';
+import ChatWidget from './components/ChatWidget';
 
 const CALENDLY_URL = 'https://calendly.com/alphamarketingai/30min';
 
@@ -193,6 +194,9 @@ const App: React.FC = () => {
           </div>
         </div>
       </footer>
+
+      {/* AI Assistant */}
+      <ChatWidget />
     </div>
   );
 };
