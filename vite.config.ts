@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Using relative base to ensure asset resolution works across different hosting configurations
-  base: './',
+  // Set base to the repository name for GitHub Pages sub-path hosting
+  base: '/Alpha/',
   define: {
     'process.env.API_KEY': JSON.stringify(process.env.API_KEY)
   },
